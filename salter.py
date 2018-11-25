@@ -1,3 +1,7 @@
+# Provides Salter class for secure password storage
+# Generates N unique salts and appends them to salts.txt
+# usage: "python3 salter.py N" 
+
 import sys
 from Crypto.Hash import SHA256
 
@@ -50,7 +54,7 @@ class salter():
 
 		fp = open(filename_counter,'w')
 		fp.write(str(newCounter) + '\n' + str(self.usedCounter))
-		fp.close
+		fp.close()
 
 		self.currentCounter = newCounter
 
@@ -63,3 +67,4 @@ def main(argv):
 	x.writeSalts(int(argv[1]))
 
 main(sys.argv)
+
