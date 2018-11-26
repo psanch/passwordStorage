@@ -3,20 +3,20 @@
 #include <stdint.h>
 #include <assert.h>
 
-char* get_salt(FILE f, uint32_t* num) {
+char* get_salt(const uint32_t num) {
     FILE *counter, *salts;
 
     counter = fopen("counters.txt", "r");
     salts = fopen("salts.txt", "r");
 
-    uint32_t* salt_num = malloc(32);
-    uint32_t* salt_limit = malloc(32);
+    uint32_t* salt_num = malloc(sizeof(uint32_t));
+    uint32_t* salt_limit = malloc(sizeof(uint32_t));
 
     fscanf(counter, "%s", salt_limit); //Reads first number into salt_limit
     fscanf(counter, "%s", salt_num); //Copies hash number to be used into salt_num
 
-    char* salt = malloc(32); //32 byte salt
-    for (uint32_t i = 0; i < *num; ++i)
+    char* salt = malloc(32 * sizeof(char)); //32 byte salt
+    for (uint32_t i = 0; i < num; ++i)
     {
         if(!(fscanf(f, "%32s", salt))) return NULL;
     }
@@ -30,7 +30,7 @@ char* get_salt(FILE f, uint32_t* num) {
     free(salt_limit);
     fclose(counter);
     fclose(salts);
-    
+
     return salt;
 }
 
