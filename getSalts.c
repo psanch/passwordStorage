@@ -3,9 +3,7 @@
 #include <stdint.h>
 #include <assert.h>
 
-char* get_salt(FILE f, uint32_t* num);
-
-int main() {
+char* get_salt(FILE f, uint32_t* num) {
     FILE *counter, *salts;
 
     counter = fopen("counters.txt", "r");
@@ -13,10 +11,15 @@ int main() {
 
     uint32_t* salt_num = malloc(32);
     uint32_t* salt_limit = malloc(32);
-    
+
     fscanf(counter, "%s", salt_limit); //Reads first number into salt_limit
     fscanf(counter, "%s", salt_num); //Copies hash number to be used into salt_num
 
+    char* salt = malloc(32); //32 byte salt
+    for (uint32_t i = 0; i < *num; ++i)
+    {
+        if(!(fscanf(f, "%32s", salt))) return NULL;
+    }
 
     char* salt = get_salt(salts, salt_num);
     printf("%u", salt_num);
@@ -27,22 +30,19 @@ int main() {
     free(salt_limit);
     fclose(counter);
     fclose(salts);
-    return 0;
+    
+    return salt;
 }
 
-
+/*
 char* get_salt(FILE f, uint32_t* num)
 //Precondition: f is an open file containing one salt on each line
 //num is the line number containing the salt to be accessed
 //Postcondition: returns pointer to salt as a char[], or NULL on error
 {
-    char* salt = malloc(32); //32 byte salt
-    for (uint32_t i = 0; i < *num; ++i)
-    {
-        if(!(fscanf(f, "%32s", salt))) return NULL;
-    }
+
     return salt;
-}
+}*/
 
 
 
