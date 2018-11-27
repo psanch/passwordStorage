@@ -5,14 +5,15 @@
 #include <string.h>
 #include "argon2.h"
 
-#include "getSalts.h"
-#include "login.h"
+#include "../getSalts.h"
+#include "../login.h"
+
 
 int main()
 {
-    char usr[64], password[64], exit = "Exit";
+    char usr[64], password[64], exit = "exit";
 
-    printf("Enter username or \"Exit\": ");
+    printf("Enter username or \"exit\": ");
     fgets(usr, 64, stdin);
     while (strcmp(usr, exit))
     {
@@ -27,7 +28,7 @@ int main()
             printf("Incorrect username or password.\n");
         }
 
-        printf("Enter username or \"Exit\": ");
+        printf("Enter username or \"exit\": ");
         fgets(usr, 64, stdin);
     }
 

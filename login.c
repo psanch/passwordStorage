@@ -8,6 +8,8 @@
 #include "login.h"
 #include "argon2.h"
 
+//Pre: username and password hold the username and password.
+//username and password are valid inputs to validate_usr_name and validate_password, respectively.
 bool authenticate_login(const char* username, const char* password)
 {
     const uint32_t

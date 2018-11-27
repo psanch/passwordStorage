@@ -4,7 +4,7 @@ bool secure_copy(char* dest, const char* src, const uint32_t start, const uint32
 {
     if (start < length) return false;
 
-    uint32_t n, i;
+    size_t n, i;
     if (sizeof(dest) < start + length)
         n = sizeof(dest) / sizeof(char);
     else
