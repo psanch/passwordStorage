@@ -1,3 +1,44 @@
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "argon2.h"
+
+#include "getSalts.h"
+#include "login.h"
+
+int main()
+{
+    char usr[64], password[64], exit = "Exit";
+
+    printf("Enter username or \"Exit\": ");
+    fgets(usr, 64, stdin);
+    while (strcmp(usr, exit))
+    {
+        printf("Enter password: ");
+        fgets(password, 64, stdin);
+        if (authenticate_login(usr, password))
+        {
+            printf("Logged in as %s\n", usr);
+        }
+        else
+        {
+            printf("Incorrect username or password.\n");
+        }
+
+        printf("Enter username or \"Exit\": ");
+        fgets(usr, 64, stdin);
+    }
+
+    return 0;
+}
+
+
+
+
+
+
 /*
  * Argon2 reference source code package - reference C implementations
  *
@@ -14,7 +55,7 @@
  * You should have received a copy of both of these licenses along with this
  * software. If not, they may be obtained at the above URLs.
  */
-
+/*
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -287,3 +328,5 @@ int main() {
 
     return 0;
 }
+
+*/

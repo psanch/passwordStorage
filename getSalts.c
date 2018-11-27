@@ -25,7 +25,6 @@ char* get_salt(const uint32_t num) {
     printf("%u", salt_num);
     //we need to update salt_num
 
-    free(salt);
     free(salt_num);
     free(salt_limit);
     fclose(counter);
