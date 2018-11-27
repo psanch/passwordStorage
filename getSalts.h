@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-char* get_salt(FILE f, uint32_t* num);
+char* get_salt(const uint32_t num);
 
-#endif 
+#endif

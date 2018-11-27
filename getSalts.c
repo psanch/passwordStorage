@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <assert.h>
 
+#include "getSalts.h"
+
 char* get_salt(const uint32_t num) {
     FILE *counter, *salts;
 
